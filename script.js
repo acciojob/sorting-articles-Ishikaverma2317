@@ -14,17 +14,15 @@ const bands = [
   'An Old Dog'
 ];
 
-// Function to strip "a", "an", "the" from beginning
-function stripArticle(name) {
-  return name.replace(/^(a |an |the )/i, '').trim();
+// function jo "a ", "an ", "the " ko ignore kare
+function stripArticle(str) {
+  return str.replace(/^(a |an |the )/i, '').trim();
 }
 
-// Sort alphabetically ignoring articles
-const sortedBands = bands.sort((a, b) => {
-  return stripArticle(a).localeCompare(stripArticle(b));
-});
+// sorting ignoring articles
+const sortedBands = bands.sort((a, b) => stripArticle(a).localeCompare(stripArticle(b)));
 
-// Display in <ul>
+// DOM me insert karna
 const ul = document.getElementById('band');
 sortedBands.forEach(band => {
   const li = document.createElement('li');
