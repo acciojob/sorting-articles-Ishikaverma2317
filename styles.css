@@ -1,20 +1,48 @@
-* { margin:0; padding:0; box-sizing:border-box; }
+/* Simple styling that matches example look */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: Arial, sans-serif;
-  background: url("background.jpg") no-repeat center center fixed;
-  background-size: cover;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(180deg, #f4f6f9 0%, #eef2f7 100%);
   display: flex;
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
   padding: 40px;
+  color: #222;
 }
 
 .container {
-  background:#fff; padding:20px 30px; border-radius:8px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1); max-width:600px; width:100%;
+  width: 100%;
+  max-width: 640px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 22px;
+  box-shadow: 0 8px 30px rgba(17,24,39,0.08);
 }
-h1 { text-align:center; margin-bottom:20px; font-size:22px; color:#333; }
-#band { list-style:none; }
-#band li { padding:10px; border-bottom:1px solid #ddd; font-size:16px; color:#444; }
+
+h1 {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 18px;
+  color: #333;
+}
+
+#band {
+  list-style: none;
+}
+
+#band li {
+  padding: 12px 10px;
+  border-bottom: 1px solid #e6eef6;
+  font-size: 16px;
+  color: #444;
+}
+
 #band li:last-child { border-bottom: none; }
+
+#band li::before{
+  content: "";
+  display:inline-block;
+  width:8px; height:8px; margin-right:12px;
+  background:#2b6cb0; border-radius:2px; vertical-align:middle;
+}
