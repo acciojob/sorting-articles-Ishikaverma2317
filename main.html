@@ -3,14 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alphabetical Article Sorter</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Sorted Bands List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    ul#band {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    ul#band li {
+      margin: 5px 0;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Alphabetical Article Sorter</h1>
-    <ul id="band"></ul>
-  </div>
-  <script src="script.js"></script>
+
+  <h1>Bands List (Sorted Alphabetically)</h1>
+  <ul id="band"></ul>
+
+  <script>
+    const bands = [
+      'The Plot in You',
+      'The Devil Wears Prada',
+      'Pierce the Veil',
+      'Norma Jean',
+      'The Bled',
+      'Say Anything',
+      'The Midway State',
+      'We Came as Romans',
+      'Counterparts',
+      'Oh, Sleeper',
+      'A Skylit Drive',
+      'Anywhere But Here',
+      'An Old Dog'
+    ];
+
+    // function to remove leading articles
+    function stripArticle(name) {
+      return name.replace(/^(a |an |the )/i, '').trim();
+    }
+
+    // sort ignoring articles
+    const sortedBands = bands.slice().sort((a, b) =>
+      stripArticle(a).toLowerCase().localeCompare(stripArticle(b).toLowerCase())
+    );
+
+    // render into UL
+    const ul = document.getElementById('band');
+    ul.innerHTML = sortedBands.map(band => `<li>${band}</li>`).join('');
+
+    // optional: check sorted array in console
+    console.log(sortedBands);
+  </script>
+
 </body>
 </html>
