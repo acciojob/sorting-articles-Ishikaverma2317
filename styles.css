@@ -1,57 +1,47 @@
-/* simple, clean styling to match example look */
-:root{
-  --bg: #f5f7fb;
-  --card: #ffffff;
-  --accent: #2b6cb0;
-  --text: #222;
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  background:var(--bg);
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
-  padding:48px 16px;
-  color:var(--text);
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px;
 }
 
-/* Centered card that contains the list */
-#band{
-  width:100%;
-  max-width:720px;
-  background:var(--card);
-  border-radius:10px;
-  box-shadow:0 6px 20px rgba(32,40,50,0.08);
-  padding:20px 22px;
-  margin:0;
-  list-style-type: none; /* hide default bullets */
+.container {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 600px;
+  width: 100%;
 }
 
-/* If you prefer bullets, change list-style-type to 'disc' */
-#band li{
-  padding:10px 8px;
-  border-bottom:1px solid #eef2f6;
-  font-size:16px;
-  line-height:1.4;
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #333;
 }
 
-/* Remove divider after last item */
-#band li:last-child{
+#band {
+  list-style-type: none;
+}
+
+#band li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 16px;
+  color: #444;
+}
+
+#band li:last-child {
   border-bottom: none;
-}
-
-/* small accent marker Before each li (like a subtle bullet) */
-#band li::before{
-  content: "";
-  display:inline-block;
-  width:8px;
-  height:8px;
-  background:var(--accent);
-  border-radius:2px;
-  margin-right:12px;
-  vertical-align:middle;
 }

@@ -1,4 +1,3 @@
-// List provided by the exercise
 const bands = [
   'The Plot in You',
   'The Devil Wears Prada',
@@ -15,26 +14,16 @@ const bands = [
   'An Old Dog'
 ];
 
-/**
- * Removes leading article "a ", "an ", or "the " (case-insensitive)
- * and returns the remaining string trimmed.
- */
+// function to remove leading articles
 function stripArticle(name) {
-  // ^(a |an |the )  -> match at start (case-insensitive)
   return name.replace(/^(a |an |the )/i, '').trim();
 }
 
-/**
- * Sort the bands ignoring leading articles, but display the original names.
- * We make a shallow copy so original array order isn't mutated (good practice).
- */
-const sortedBands = bands.slice().sort((a, b) => {
-  const keyA = stripArticle(a).toLowerCase();
-  const keyB = stripArticle(b).toLowerCase();
-  // localeCompare gives proper lexicographic ordering, case-insensitive by pre-lowercasing
-  return keyA.localeCompare(keyB);
-});
+// sort ignoring articles
+const sortedBands = bands.slice().sort((a, b) =>
+  stripArticle(a).toLowerCase().localeCompare(stripArticle(b).toLowerCase())
+);
 
-// Render into the <ul id="band"> exactly (tests expect this id)
+// render into UL
 const ul = document.getElementById('band');
-ul.innerHTML = sortedBands.map(b => `<li>${b}</li>`).join('');
+ul.innerHTML = sortedBands.map(band => `<li>${band}</li>`).join('');
