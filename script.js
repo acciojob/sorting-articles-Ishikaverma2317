@@ -1,29 +1,37 @@
 const bands = [
-  'The Plot in You',
-  'The Devil Wears Prada',
-  'Pierce the Veil',
-  'Norma Jean',
-  'The Bled',
-  'Say Anything',
-  'The Midway State',
-  'We Came as Romans',
-  'Counterparts',
-  'Oh, Sleeper',
-  'A Skylit Drive',
-  'Anywhere But Here',
-  'An Old Dog'
+    'The Plot in You', 
+    'The Devil Wears Prada', 
+    'Pierce the Veil', 
+    'Norma Jean', 
+    'The Bled', 
+    'Say Anything', 
+    'The Midway State', 
+    'We Came as Romans', 
+    'Counterparts', 
+    'Oh, Sleeper', 
+    'A Skylit Drive', 
+    'Anywhere But Here', 
+    'An Old Dog'
 ];
 
-function stripArticle(name) {
-  return name.trim().replace(/^(?:a |an |the )/i, '').trim();
+// Function to remove articles for sorting
+function stripArticles(bandName) {
+    return bandName.replace(/^(a |an |the )/i, '').trim();
 }
 
-const sortedBands = bands.slice().sort((a, b) => {
-  const keyA = stripArticle(a).toLowerCase();
-  const keyB = stripArticle(b).toLowerCase();
-  return keyA.localeCompare(keyB);
+// Sort the bands array
+const sortedBands = bands.sort((a, b) => {
+    const nameA = stripArticles(a);
+    const nameB = stripArticles(b);
+    return nameA.localeCompare(nameB);
 });
 
-// Render result into #band
-const ul = document.getElementById('band');
-ul.innerHTML = sortedBands.map(b => `<li>${b}</li>`).join('');
+// Get the unordered list element
+const bandList = document.getElementById('band');
+
+// Create list items for each band
+sortedBands.forEach(band => {
+    const listItem = document.createElement('li');
+    listItem.textContent = band;
+    bandList.appendChild(listItem);
+});
