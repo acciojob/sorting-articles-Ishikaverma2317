@@ -65,13 +65,13 @@
             border-radius: 4px;
         }
         
-        #band {
+        #bands {
             list-style-type: none;
             padding: 0;
             counter-reset: article-counter;
         }
         
-        #band li {
+        #bands li {
             padding: 15px 20px;
             margin-bottom: 10px;
             background-color: #f8f9fa;
@@ -83,7 +83,7 @@
             counter-increment: article-counter;
         }
         
-        #band li::before {
+        #bands li::before {
             content: counter(article-counter);
             position: absolute;
             left: -15px;
@@ -101,13 +101,13 @@
             font-size: 14px;
         }
         
-        #band li:hover {
+        #bands li:hover {
             background-color: #e3f2fd;
             transform: translateX(5px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        #band li:last-child {
+        #bands li:last-child {
             margin-bottom: 0;
         }
         
@@ -129,7 +129,7 @@
             <p>The original order is preserved in the display, but sorting is done based on the title without these articles.</p>
         </div>
         
-        <ul id="band"></ul>
+        <ul id="bands"></ul>
         
         <div class="footer">
             <p>Sorted alphabetically (ignoring articles) | Total articles: <span id="count">0</span></p>
@@ -166,8 +166,8 @@
             return nameA.localeCompare(nameB);
         });
 
-        // Get the unordered list element
-        const bandList = document.getElementById('band');
+        // Get the unordered list element - FIXED: changed id from 'band' to 'bands'
+        const bandList = document.getElementById('bands');
 
         // Create list items for each band
         sortedBands.forEach(band => {
