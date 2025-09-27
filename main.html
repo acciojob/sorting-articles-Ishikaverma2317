@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alphabetical Article Sorter</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: #f5f5f5;
-            margin: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
             padding: 20px;
         }
         
@@ -19,65 +25,115 @@
             margin: 0 auto;
             background-color: white;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
         
         h1 {
             text-align: center;
             color: #2c3e50;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
-        
-        #band {
-            list-style-type: none;
-            padding: 0;
-        }
-        
-        #band li {
-            padding: 12px 15px;
-            border-bottom: 1px solid #eee;
-            font-size: 18px;
-            transition: background-color 0.3s;
-        }
-        
-        #band li:last-child {
-            border-bottom: none;
-        }
-        
-        #band li:hover {
-            background-color: #f9f9f9;
-        }
-        
-        .info {
-            background-color: #e8f4fc;
-            padding: 15px;
-            border-radius: 8px;
             margin-bottom: 20px;
-            font-size: 14px;
-            color: #2c3e50;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+            font-size: 2.2rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .info-box {
+            background-color: #e8f4fc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .info-box p {
+            margin-bottom: 10px;
         }
         
         .highlight {
             color: #e74c3c;
             font-weight: bold;
+            background-color: #ffeaa7;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        #band {
+            list-style-type: none;
+            padding: 0;
+            counter-reset: article-counter;
+        }
+        
+        #band li {
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #3498db;
+            position: relative;
+            counter-increment: article-counter;
+        }
+        
+        #band li::before {
+            content: counter(article-counter);
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        #band li:hover {
+            background-color: #e3f2fd;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        #band li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Alphabetical Article Sorter</h1>
+        <p class="subtitle">Articles sorted ignoring 'A', 'An', and 'The'</p>
         
-        <div class="info">
-            Articles are sorted alphabetically while ignoring the words 
-            <span class="highlight">'a'</span>, 
-            <span class="highlight">'an'</span>, and 
-            <span class="highlight">'the'</span> at the beginning.
+        <div class="info-box">
+            <p>This page displays a list of articles sorted alphabetically while ignoring the words <span class="highlight">'A'</span>, <span class="highlight">'An'</span>, and <span class="highlight">'The'</span> at the beginning of each title.</p>
+            <p>The original order is preserved in the display, but sorting is done based on the title without these articles.</p>
         </div>
         
         <ul id="band"></ul>
+        
+        <div class="footer">
+            <p>Sorted alphabetically (ignoring articles) | Total articles: <span id="count">0</span></p>
+        </div>
     </div>
 
     <script>
@@ -120,8 +176,12 @@
             bandList.appendChild(listItem);
         });
 
-        // Console log for verification
-        console.log('Sorted bands:', sortedBands);
+        // Update article count
+        document.getElementById('count').textContent = sortedBands.length;
+        
+        // Log for verification
+        console.log('Original order:', bands);
+        console.log('Sorted order (ignoring articles):', sortedBands);
     </script>
 </body>
 </html>
