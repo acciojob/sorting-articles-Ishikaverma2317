@@ -4,19 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alphabetical Article Sorter</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        #band {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        #band li {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        
+        #band li:last-child {
+            border-bottom: none;
+        }
+        
+        #band li:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .info {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #2c3e50;
+        }
+        
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Alphabetical Article Sorter</h1>
         
         <div class="info">
-            Articles are sorted alphabetically while ignoring the words <span class="highlight">'a'</span>, <span class="highlight">'an'</span>, and <span class="highlight">'the'</span> at the beginning.
+            Articles are sorted alphabetically while ignoring the words 
+            <span class="highlight">'a'</span>, 
+            <span class="highlight">'an'</span>, and 
+            <span class="highlight">'the'</span> at the beginning.
         </div>
         
         <ul id="band"></ul>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Article data
+        const bands = [
+            'The Plot in You', 
+            'The Devil Wears Prada', 
+            'Pierce the Veil', 
+            'Norma Jean', 
+            'The Bled', 
+            'Say Anything', 
+            'The Midway State', 
+            'We Came as Romans', 
+            'Counterparts', 
+            'Oh, Sleeper', 
+            'A Skylit Drive', 
+            'Anywhere But Here', 
+            'An Old Dog'
+        ];
+
+        // Function to remove articles for sorting
+        function stripArticles(bandName) {
+            return bandName.replace(/^(a |an |the )/i, '').trim();
+        }
+
+        // Sort the bands array alphabetically ignoring articles
+        const sortedBands = bands.sort((a, b) => {
+            const nameA = stripArticles(a);
+            const nameB = stripArticles(b);
+            return nameA.localeCompare(nameB);
+        });
+
+        // Get the unordered list element
+        const bandList = document.getElementById('band');
+
+        // Create list items for each band
+        sortedBands.forEach(band => {
+            const listItem = document.createElement('li');
+            listItem.textContent = band;
+            bandList.appendChild(listItem);
+        });
+
+        // Console log for verification
+        console.log('Sorted bands:', sortedBands);
+    </script>
 </body>
 </html>
